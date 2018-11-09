@@ -53,6 +53,11 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Senha:");
 
         jButton1.setText("ENTRAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("SAIR");
 
@@ -105,38 +110,59 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      Connection con = Conexao.AbrirConexao();
-      FuncionarioDAO sql = new FuncionarioDAO(con);
-      String login = tfUsuario.getText();
-      String senha = pfSenha.getText();
-      if (login.equalsIgnoreCase("") || senha.equalsIgnoreCase("")) {
-          JOptionPane.showMessageDialog(null, "Nenhum campo pode esta Vazio", 
-                  "Video Locadora", JOptionPane.WARNING_MESSAGE);
-          tfUsuario.setText("");
-          pfSenha.setText("");
-      }else {
-          if(sql.Logar(login, senha) ==  true){
-              new Thread(){
-                  public void run(){
-                      for (int i = 0; i < 101; i++){
-                           jProgressBar.setValue(i);
-                          try{
-                              Thread.sleep(35);
-                          } catch (Exception ex){
-                              ex.getMessage();
-                      }
-                  }
-                      new Menu().setVisible(true);
-                      dispose();
-              }
-          }.start();
-      }else {
-              JOptionPane.showMessageDialog(null, "Usuário ou Senha Inválidos!",
-                      "Video Locadora", JOptionPane.ERROR_MESSAGE);
-              tfUsuario.setText("");
-              pfSenha.setText("");
-          }
-      }
+      
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        
+        String login = tfUsuario.getText();
+        String senha = pfSenha.getText();
+        
+        if (login.equalsIgnoreCase("") || senha.equalsIgnoreCase("")) {
+            
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio", "Video Locadora", JOptionPane.WARNING_MESSAGE);
+            tfUsuario.setText("");
+            pfSenha.setText("");
+            
+        } else {
+            
+            if (sql.Logar(login, senha) == true) {
+                
+                new Thread() {
+                    
+                    public void run(){
+                        
+                        for (int i = 0; i < 101; i++) {
+                            
+                            jProgressBar.setValue(i);
+                            
+                            try{
+                                
+                                Thread.sleep(35);
+                                
+                            }catch(Exception e){
+                            
+                                e.getMessage();
+                            
+                            }
+                            
+                        }
+                        
+                        new Menu().setVisible(true);
+                        dispose();
+                        
+                    }
+                    
+                }.start();
+                
+            } else {
+                
+                JOptionPane.showMessageDialog(null, "Usuario ou senha invalidos", "Video Locadora", JOptionPane.WARNING_MESSAGE);
+                tfUsuario.setText("");
+                pfSenha.setText("");
+                
+            }
+            
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
