@@ -12,7 +12,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ExcluirCliente extends javax.swing.JFrame {
-        private void AtualizaCombo(){
+      
+    private void AtualizaCombo(){
             Connection con = Conexao.AbrirConexao();
             ClienteDAO sql = new ClienteDAO(con);
             List<Cliente> lista = new ArrayList<>();
@@ -26,6 +27,8 @@ public class ExcluirCliente extends javax.swing.JFrame {
         }
         public ExcluirCliente() {
         initComponents();
+        setLocationRelativeTo(this);
+        AtualizaCombo();
     }
 
 
@@ -52,7 +55,6 @@ public class ExcluirCliente extends javax.swing.JFrame {
             }
         });
 
-        jCB_Nome.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCB_Nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCB_NomeActionPerformed(evt);

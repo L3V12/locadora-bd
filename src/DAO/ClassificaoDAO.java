@@ -1,14 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO;
 
-/**
- *
- * @author Aluno
- */
-public class ClassificaoDAO {
+import Modelo.Categoria;
+import Modelo.Classificao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+
+public class ClassificaoDAO extends ExecuteSQL{
+   public ClassificaoDAO(Connection con) {
+        super(con);
+    }
     
+    public String Inserir_Classificao(Classificao a){
+
+        String sql = "insert into classificacao values(0,?,?)";
+
+        try{
+            
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            
+             ps.setString(1, a.getNome());
+             ps.setDouble(2, a.getPreco());
+             
+             if (ps.executeUpdate() > 0){
+                 return "Inserido com sucesso.";
+        } else {
+                return "Erro ao inserir";
+    }     
+} catch (SQLException e) {
+    return e.getMessage();
 }
+}
+}
+
