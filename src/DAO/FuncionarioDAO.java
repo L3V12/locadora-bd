@@ -2,6 +2,7 @@
 package DAO;
 
 import Modelo.Classificao;
+import Modelo.Cliente;
 import java.sql.*;
 import Modelo.Funcionario;
 
@@ -65,4 +66,20 @@ public class FuncionarioDAO extends ExecuteSQL{
     return e.getMessage();
 }
 }
+       public String Excluir_Funcionario(Funcionario a){
+        String sql = "delete from funcionario where idfuncionario = ? and nome = ? ";
+        
+        try{
+            PreparedStatement ps = getCon().prepareStatement(sql);           
+            ps.setInt(1, a.getCod());
+            ps.setString(2, a.getNome());
+            if (ps.executeUpdate() > 0){
+                return "Excluído com sucesso.";
+            } else {
+                return "Erro ao excluir";
+            }
+        } catch (SQLException e){
+            return e.getMessage();
+        }
+    } 
 }
