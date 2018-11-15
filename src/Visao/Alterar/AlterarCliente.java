@@ -79,12 +79,18 @@ public class AlterarCliente extends javax.swing.JFrame {
 
         jTextField6.setText("jTextField6");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("                                                          ALTERAR CLIENTE");
 
         jLabel1.setText("Digite o código:");
+
+        jTF_cod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTF_codActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -398,6 +404,10 @@ public class AlterarCliente extends javax.swing.JFrame {
     private void jTF_CodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_CodigoActionPerformed
     
     }//GEN-LAST:event_jTF_CodigoActionPerformed
+
+    private void jTF_codActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_codActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTF_codActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
